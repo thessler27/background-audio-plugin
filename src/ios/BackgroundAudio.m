@@ -28,7 +28,7 @@
 
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *setCategoryError = nil;
-    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryAmbient error:&setCategoryError];
+    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategorySoloAmbient error:&setCategoryError];
     NSLog(@"Disabled background music? %@", methodSuccess ? @"YES": @"NO");
     if(!methodSuccess) { NSLog(@"Issue with disabling background audio: %@", setCategoryError.description); }
 
