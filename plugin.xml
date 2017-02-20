@@ -32,6 +32,7 @@
 
     <js-module src="www/index.js" name="backgroundaudio">
       <clobbers target="window.plugins.backgroundaudio" />
+      <clobbers target="BackgroundAudio" />
     </js-module>
 
     <!-- ios only -->
