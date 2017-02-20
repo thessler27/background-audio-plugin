@@ -18,7 +18,8 @@
 - (void) enableBackgroundMusic: (CDVInvokedUrlCommand *) command {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *setCategoryError = nil;
-    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
+    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions:
+  AVAudioSessionCategoryOptionMixWithOthers error:&setCategoryError];
     NSLog(@"Enabled background music? %@", methodSuccess ? @"YES": @"NO");
     if(!methodSuccess) { NSLog(@"Issue with enabling background audio: %@", setCategoryError.description); }
     
