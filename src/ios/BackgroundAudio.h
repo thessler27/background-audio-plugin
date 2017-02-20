@@ -1,5 +1,5 @@
 #import <Cordova/CDVPlugin.h>
 
-@interface BackgroundAudio : CDVPlugin
+@interface BackgroundAudio: CDVPlugin
 
 @end

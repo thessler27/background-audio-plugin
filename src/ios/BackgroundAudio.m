@@ -3,8 +3,6 @@
 
 @implementation BackgroundAudio
 
-NSString* theCallbackId;
-
 // this method is executed when the app loads because of the onload param in plugin.xml
 - (void)pluginInitialize {
   AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -17,7 +15,7 @@ NSString* theCallbackId;
   }
 }
 
-- (void) enableBackgroundMusic {
+- (void) enableBackgroundMusic: (CDVInvokedUrlCommand *) command {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *setCategoryError = nil;
     BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
@@ -26,7 +24,7 @@ NSString* theCallbackId;
     
 }
 
-- (void) disableBackgroundMusic {
+- (void) disableBackgroundMusic: (CDVInvokedUrlCommand *) command {
 
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *setCategoryError = nil;
