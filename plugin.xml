@@ -19,7 +19,8 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-background-audio-plugin">
+    id="thessler-background-audio-plugin"
+    version="0.0.1">
     <name>BackgroundAudio</name>
     <description>Disable and enable background audio when necessary. For HTML5 Videos pausing background audio. </description>
     <license>Apache 2.0</license>
