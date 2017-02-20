@@ -27,11 +27,11 @@ var exec = require('cordova/exec');
 var BackgroundAudio = {
 
     enableBackgroundMusic: function () {
-        exec(null, null, "StatusBar", "enableBackgroundMusic", []);
+        exec(null, null, "BackgroundAudio", "enableBackgroundMusic", []);
     },
 
     disableBackgroundMusic: function () {
-        exec(null, null, "StatusBar", "disableBackgroundMusic", []);
+        exec(null, null, "BackgroundAudio", "disableBackgroundMusic", []);
     }
 
 };

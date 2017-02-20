@@ -31,6 +31,7 @@
     </engines>
 
     <js-module src="www/index.js" name="backgroundaudio">
+      <clobbers target="window.plugins.backgroundaudio" />
     </js-module>
 
     <!-- ios only -->
