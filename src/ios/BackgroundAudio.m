@@ -28,7 +28,7 @@
 - (void) quietBackgroundMusic: (CDVInvokedUrlCommand *) command {
   AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *setCategoryError = nil;
-    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
+    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudio​Session​Category​Option​Interrupt​Spoken​Audio​And​Mix​With​Others error:&setCategoryError];
     NSLog(@"Quieted background music? %@", methodSuccess ? @"YES": @"NO");
     if(!methodSuccess) { NSLog(@"Issue with enabling background audio: %@", setCategoryError.description); }
 }
