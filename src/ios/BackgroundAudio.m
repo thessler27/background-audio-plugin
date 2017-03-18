@@ -25,6 +25,15 @@
     
 }
 
+- (void) quietBackgroundMusic: (CDVInvokedUrlCommand *) command {
+  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+  NSError *setCategoryError = nil;
+  BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: 
+    AVAudio​Session​Category​Option​Duck​Others error:&setCategoryError];
+  NSLog(@"Ducked bg music? %@", methodSuccess ? @"YES":@"NO");
+  if(!methodSuccess) { NSLog(@"Issue with ducking background audio: %@", setCategoryError.description); }
+}
+ 
 - (void) disableBackgroundMusic: (CDVInvokedUrlCommand *) command {
 
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];

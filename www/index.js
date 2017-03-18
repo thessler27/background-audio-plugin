@@ -32,6 +32,10 @@ var BackgroundAudio = {
 
     disableBackgroundMusic: function () {
         exec(null, null, "BackgroundAudio", "disableBackgroundMusic", []);
+    },
+
+    quietBackgroundMusic: function () {
+    	exec(null, null, "BackgroundAudio", "quietBackgroundMusic", []);
     }
 
 };
