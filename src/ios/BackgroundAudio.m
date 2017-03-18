@@ -7,7 +7,7 @@
 - (void)pluginInitialize {
   AVAudioSession *audioSession = [AVAudioSession sharedInstance];
   NSError *setCategoryError = nil;
-  BOOL ok = [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
+  BOOL ok = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
 
   NSLog(@"BackgroundAudio plugin ok? %@", ok ? @"YES" : @"NO");
   if (!ok) {
