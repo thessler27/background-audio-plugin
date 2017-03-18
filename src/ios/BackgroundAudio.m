@@ -9,36 +9,50 @@
   NSError *setCategoryError = nil;
   BOOL ok = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
 
-  NSLog(@"BackgroundAudio plugin ok? %@", ok ? @"YES" : @"NO");
+  NSLog(@"BackgroundAudio plugin ok with duck? %@", ok ? @"YES" : @"NO");
   if (!ok) {
     NSLog(@"BackgroundAudio plugin error: %@", setCategoryError.description);
   }
 }
 
 - (void) enableBackgroundMusic: (CDVInvokedUrlCommand *) command {
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSError *setCategoryError = nil;
-    BOOL methodSuccess = [audioSession setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&setCategoryError];
-    NSLog(@"Enabled background music? %@", methodSuccess ? @"YES": @"NO");
-    if(!methodSuccess) { NSLog(@"Issue with enabling background audio: %@", setCategoryError.description); }
+    [self.commandDelegate runInBackground:^{
+        NSError *setCategoryError = nil;
+        NSError *setActiveError = nil;
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        BOOL categoryOk = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionMixWithOthers error:&setCategoryError];
+        BOOL activeOk = [audioSession setActive:NO withOptions: AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&setActiveError];
+        NSLog(@"Enabled new bg moosic? %@", categoryOk && activeOk ? @"YES" : @"NO");
+        if(!categoryOk) NSLog(@"Issue with enabling background audio category error: %@", setCategoryError.description);
+        if(!activeOk) NSLog(@"Issue with enabling bcakground audio active error %@", setActiveError.description);
+    }];
     
 }
 
 - (void) quietBackgroundMusic: (CDVInvokedUrlCommand *) command {
-  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSError *setCategoryError = nil;
-    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
-    NSLog(@"Quieted background music? %@", methodSuccess ? @"YES": @"NO");
-    if(!methodSuccess) { NSLog(@"Issue with enabling background audio: %@", setCategoryError.description); }
+    [self.commandDelegate runInBackground:^{
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        NSError *setCategoryError = nil;
+        NSError *setActiveError = nil;
+        BOOL categoryOk = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
+        BOOL activeOk = [audioSession setActive:YES error:&setActiveError];
+        NSLog(@"Quieted new bg moosic? %@", categoryOk && activeOk ? @"YES" : @"NO");
+        if(!categoryOk) NSLog(@"Issue with enabling background audio category error: %@", setCategoryError.description);
+        if(!activeOk) NSLog(@"Issue with enabling bcakground audio active error %@", setActiveError.description);
+    }];
+
 }
  
 - (void) disableBackgroundMusic: (CDVInvokedUrlCommand *) command {
 
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSError *setCategoryError = nil;
-    BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategorySoloAmbient error:&setCategoryError];
-    NSLog(@"Disabled background music? %@", methodSuccess ? @"YES": @"NO");
-    if(!methodSuccess) { NSLog(@"Issue with disabling background audio: %@", setCategoryError.description); }
+    [self.commandDelegate runInBackground:^{
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        NSError *setCategoryError = nil;
+        BOOL methodSuccess = [audioSession setCategory:AVAudioSessionCategorySoloAmbient error:&setCategoryError];
+        NSLog(@"Disabled background music? %@", methodSuccess ? @"YES": @"NO");
+        if(!methodSuccess) { NSLog(@"Issue with disabling background audio: %@", setCategoryError.description); }
+    }];
+    
 
 }
 
