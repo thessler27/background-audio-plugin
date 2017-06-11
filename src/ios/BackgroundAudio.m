@@ -39,7 +39,7 @@
         NSError *setActiveError = nil;
         CDVPluginResult* pluginResult = nil;
         BOOL categoryOk = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
-        BOOL activeOk = [audioSession setActive:YES error:&setActiveError];
+        BOOL activeOk = [audioSession setActive:NO error:&setActiveError];
         NSLog(@"Quieted new bg moosic? %@", categoryOk && activeOk ? @"YES" : @"NO");
         if(!categoryOk) NSLog(@"Issue with enabling background audio category error: %@", setCategoryError.description);
         if(!activeOk) NSLog(@"Issue with enabling bcakground audio active error %@", setActiveError.description);
