@@ -4,7 +4,6 @@ import android.media.AudioManager;
 public class BackgroundAudio extends CordovaPlugin {
 
 	public audioMgr 						= AudioManager;
-	public audioChangeListener 	= AudioManager.OnAudioFocusChangeListener;
 
 	protected void pluginInitialize () {
 		audioMgr = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
