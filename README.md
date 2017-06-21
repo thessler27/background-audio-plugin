@@ -25,3 +25,4 @@ Supported Platforms
 -------------------
 
 - iOS
+- Android
