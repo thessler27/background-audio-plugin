@@ -9,13 +9,11 @@ description: Control whether or not your app allows background audio, dynamicall
 
 ## Utilization
 
-### There are two methods by which you can do this. The first enables background audio to play in sync with the current audio track using AVAudioSessions. The second disables background audio playing with the current audio track. The plugin attaches to the window at `window.plugins.backgroundaudio`
+1. To enable background audio mixing with other audio tracks: `window.plugins.backgroundaudio.enableBackgroundMusic()`
 
-1. To enable background audio mixing with other audio tracks: `window.plugins.backgroundaudio.enableBackgroundMusic(successHandler, errorHandler)`
+2. To disable: `window.plugins.backgroundaudio.disableBackgroundMusic()`
 
-2. To disable: `window.plugins.backgroundaudio.disableBackgroundMusic(successHandler, errorHandler)`
-
-3. To duck: `window.plugins.backgroundaudio.quietBackgroundMusic(successHandler, errorHandler)`
+3. To duck: `window.plugins.backgroundaudio.quietBackgroundMusic()`
 
 NOTE: both methods return void
 
