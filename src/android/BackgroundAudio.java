@@ -17,7 +17,7 @@ public class BackgroundAudio extends CordovaPlugin {
 	private final static String TAG = "AudioFocus";
 
 	@Override
-	public void initialize () {
+	protected void pluginInitialize () {
 		Log.i(TAG, "Initializing Background Audio Plugin....");
 		mContext = this.cordova.getActivity().getApplicationContext();
 		audioMgr = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
