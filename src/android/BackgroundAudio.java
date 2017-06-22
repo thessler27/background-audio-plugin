@@ -3,6 +3,7 @@ package org.apache.cordova.plugin;
 import org.apache.cordova.CordovaPlugin;
 import android.media.AudioManager;
 import android.content.Context;
+import android.util.Log;
 
 public class BackgroundAudio extends CordovaPlugin {
 
@@ -18,8 +19,8 @@ public class BackgroundAudio extends CordovaPlugin {
 		changeListener = new AudioManager.OnAudioFocusChangeListener() {
 			public void onAudioFocusChange(int focusChange) {
 				switch (focusChange) {
-	                case AudioManager.AUDIOFOCUS_GAIN:
-	                    Log.i(TAG, "AUDIOFOCUS_GAIN");
+	                case AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK:
+	                    Log.i(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK");
 	                    //restart/resume your sound
 	                    break;
 	                case AudioManager.AUDIOFOCUS_LOSS:
@@ -27,22 +28,17 @@ public class BackgroundAudio extends CordovaPlugin {
 	                    //Loss of audio focus for a long time
 	                    //Stop playing the sound
 	                    break;
-	                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-	                    Log.e(TAG, "AUDIOFOCUS_LOSS_TRANSIENT");
+	                case AudioManager.AUDIOFOCUS_GAIN:
+	                    Log.e(TAG, "AUDIOFOCUS_GAIN");
 	                    //Loss of audio focus for a short time
 	                    //Pause playing the sound
 	                    break;
-	                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-	                    Log.e(TAG, "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK");
-	                    //Loss of audio focus for a short time.
-	                    //But one can duck. Lower the volume of playing the sound
-	                    break;
-
 	                default:
 	                    //
 	            }
 			}
 		};
+		audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK); //<-- init with this
 	}
 
 	public void enableBackgroundMusic () {
