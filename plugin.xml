@@ -53,12 +53,12 @@
 
       <config-file target="config.xml" parent="/*">
         <feature name="BackgroundAudio">
-          <param name="android-package" value="com.thessler.backgroundAudioPlugin"/>
+          <param name="android-package" value="org.apache.cordova.plugin.BackgroundAudio"/>
           <param name="onload" value="true" />
         </feature>
       </config-file>
 
-      <source-file src="src/android/BackgroundAudio.java" target-dir="com/thessler/" />
+      <source-file src="src/android/BackgroundAudio.java" target-dir="src/org/apache/cordova/plugin" />
 
     </platform>
 
