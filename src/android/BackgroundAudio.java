@@ -16,7 +16,6 @@ public class BackgroundAudio extends CordovaPlugin {
 	public Context mContext;
 	private final static String TAG = "AudioFocus";
 
-	@Override
 	public boolean execute(String action, JSONArray arg) throws JSONException {
         if (action.equals("enableBackgroundMusic")) {
         	this.enableBackgroundMusic();
