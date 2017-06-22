@@ -17,6 +17,20 @@ public class BackgroundAudio extends CordovaPlugin {
 	private final static String TAG = "AudioFocus";
 
 	@Override
+	public boolean execute(String action, JSONArray arg) throws JSONException {
+        if (action.equals("enableBackgroundMusic")) {
+        	this.enableBackgroundMusic();
+        	return true;
+        } else if (action.equals("quietBackgroundMusic")) { 
+        	this.quietBackgroundMusic();
+        	return true;
+        } else if (action.equals("disableBackgroundMusic")) {
+        	this.disableBackgroundMusic();
+        	return true;
+        }
+        return false;
+    }
+
 	public void pluginInitialize () {
 		Log.i(TAG, "Initializing Background Audio Plugin....");
 		mContext = this.cordova.getActivity().getApplicationContext();
@@ -48,22 +62,6 @@ public class BackgroundAudio extends CordovaPlugin {
 			Log.e(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request denieeddddd");
 		}
 	}
-
-	@Override
-	public boolean execute(String action, JSONArray arg) throws JSONException {
-        if (action.equals("enableBackgroundMusic")) {
-        	this.enableBackgroundMusic();
-        	return true;
-        } else if (action.equals("quietBackgroundMusic")) { 
-        	this.quietBackgroundMusic();
-        	return true;
-        } else if (action.equals("disableBackgroundMusic")) {
-        	this.disableBackgroundMusic();
-        	return true;
-        }
-        return false;
-    }
-
 
 	public void enableBackgroundMusic () {
 		Log.i(TAG, "requesting audio focus loss to enable bg music....");
