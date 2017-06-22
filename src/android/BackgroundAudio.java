@@ -1,6 +1,10 @@
 package org.apache.cordova.plugin;
 
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.api.PluginResult;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import android.media.AudioManager;
 import android.content.Context;
 import android.util.Log;
@@ -44,6 +48,17 @@ public class BackgroundAudio extends CordovaPlugin {
 			Log.e(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request denieeddddd");
 		}
 	}
+
+	@Override
+	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if (action.equals("echo")) {
+            String message = args.getString(0); 
+            this.echo(message, callbackContext);
+            return true;
+        }
+        return false;
+    }
+
 
 	public void enableBackgroundMusic () {
 		Log.i(TAG, "requesting audio focus loss to enable bg music....");
