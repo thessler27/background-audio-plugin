@@ -15,8 +15,6 @@ description: Control whether or not your app allows background audio, dynamicall
 
 3. To duck: `window.plugins.backgroundaudio.quietBackgroundMusic()`
 
-NOTE: both methods return void
-
 
 
 Supported Platforms
