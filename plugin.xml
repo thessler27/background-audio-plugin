@@ -58,7 +58,7 @@
         </feature>
       </config-file>
 
-      <source-file src="src/android/BackgroundAudio.java" />
+      <source-file src="src/android/BackgroundAudio.java" target-dir="src/android/" />
 
     </platform>
 
