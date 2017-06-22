@@ -35,7 +35,6 @@
       <clobbers target="BackgroundAudio" />
     </js-module>
 
-    <!-- ios only -->
     <platform name="ios">
 
         <config-file target="config.xml" parent="/*">
@@ -49,5 +48,19 @@
         <source-file src="src/ios/BackgroundAudio.m" />
 
     </platform>
+
+    <platform name="android">
+
+      <config-file target="config.xml" parent="/*">
+        <feature name="BackgroundAudio">
+          <param name="android-package" value="com.thessler.backgroundAudioPlugin"/>
+          <param name="onload" value="true">
+        </feature>
+      </config-file>
+      
+      <source-file src="src/android/BackgroundAudio.java" />
+
+    </platform>
+
 
 </plugin>

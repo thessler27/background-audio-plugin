@@ -1,3 +1,5 @@
+package com.thessler.backgroundAudioPlugin;
+
 import org.apache.cordova.CordovaPlugin;
 import android.media.AudioManager;
 
