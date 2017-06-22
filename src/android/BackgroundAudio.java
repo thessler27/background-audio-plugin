@@ -1,7 +1,7 @@
 package org.apache.cordova.plugin;
 
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.PluginResult;
+import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,27 +11,13 @@ import android.util.Log;
 
 public class BackgroundAudio extends CordovaPlugin {
 
-	@Override
-	public boolean execute(String action, JSONArray args) throws JSONException {
-        if (action.equals("enableBackgroundMusic")) {
-        	this.enableBackgroundMusic();
-        	return true;
-        } else if (action.equals("quietBackgroundMusic")) { 
-        	this.quietBackgroundMusic();
-        	return true;
-        } else if (action.equals("disableBackgroundMusic")) {
-        	this.disableBackgroundMusic();
-        	return true;
-        }
-        return false;
-    }
-
 	public AudioManager audioMgr;
 	public AudioManager.OnAudioFocusChangeListener changeListener;
 	public Context mContext;
 	private final static String TAG = "AudioFocus";
 
-	public void pluginInitialize () {
+	@Override
+	public void initialize () {
 		Log.i(TAG, "Initializing Background Audio Plugin....");
 		mContext = this.cordova.getActivity().getApplicationContext();
 		audioMgr = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
@@ -61,6 +47,21 @@ public class BackgroundAudio extends CordovaPlugin {
 		} else {
 			Log.e(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request denieeddddd");
 		}
+	}
+
+	@Override
+	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	    if (action.equals("enableBackgroundMusic")) {
+        	this.enableBackgroundMusic();
+        	return true;
+        } else if (action.equals("quietBackgroundMusic")) { 
+        	this.quietBackgroundMusic();
+        	return true;
+        } else if (action.equals("disableBackgroundMusic")) {
+        	this.disableBackgroundMusic();
+        	return true;
+        }
+        return false;
 	}
 
 	public void enableBackgroundMusic () {
