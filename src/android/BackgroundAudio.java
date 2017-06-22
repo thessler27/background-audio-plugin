@@ -51,10 +51,15 @@ public class BackgroundAudio extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("echo")) {
-            String message = args.getString(0); 
-            this.echo(message, callbackContext);
-            return true;
+        if (action.equals("enableBackgroundMusic")) {
+        	this.enableBackgroundMusic();
+        	return true;
+        } else if (action.equals("quietBackgroundMusic")) { 
+        	this.quietBackgroundMusic();
+        	return true;
+        } else if (action.equals("disableBackgroundMusic")) {
+        	this.disableBackgroundMusic();
+        	return true;
         }
         return false;
     }
