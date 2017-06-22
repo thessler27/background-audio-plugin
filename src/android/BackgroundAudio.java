@@ -8,12 +8,16 @@ public class BackgroundAudio extends CordovaPlugin {
 
 	public AudioManager audioMgr;
 	public AudioManager.OnAudioFocusChangeListener changeListener;
-	public Context mContext = this;
+	public Context mContext = this.cordova.getActivity().getApplicationContext();
 
 	@Override
 	public void pluginInitialize () {
 		audioMgr = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-		changeListener = new AudioManager.OnAudioFocusChangeListener() {};
+		changeListener = new AudioManager.OnAudioFocusChangeListener() {
+			public void change () {
+				
+			}
+		};
 	}
 
 	public void enableBackgroundMusic () {
