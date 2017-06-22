@@ -14,6 +14,7 @@ public class BackgroundAudio extends CordovaPlugin {
 
 	@Override
 	public void pluginInitialize () {
+		Log.i(TAG, "Initializing Background Audio Plugin....");
 		mContext = this.cordova.getActivity().getApplicationContext();
 		audioMgr = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
 		changeListener = new AudioManager.OnAudioFocusChangeListener() {
@@ -33,25 +34,46 @@ public class BackgroundAudio extends CordovaPlugin {
 	                    //Loss of audio focus for a short time
 	                    //Pause playing the sound
 	                    break;
-	                default:
-	                    //
 	            }
 			}
 		};
-		audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK); //<-- init with this
+		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK); //<-- init with this
+		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+			Log.d(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request granted");
+		} else {
+			Log.e(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request denieeddddd");
+		}
 	}
 
 	public void enableBackgroundMusic () {
-		audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_LOSS);
+		Log.i(TAG, "requesting audio focus loss to enable bg music....");
+		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_LOSS);
+		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+			Log.d(TAG, "AUDIOFOCUS_LOSS Audio request granted");
+		} else {
+			Log.e(TAG, "AUDIOFOCUS_LOSS Audio request denieeddddd");
+		}
 	}
 
 	public void quietBackgroundMusic () {
+		Log.i(TAG, "requesting to gain focus and transient to duck....");
 		//quiet BG moosic
-		audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+			Log.d(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request granted");
+		} else {
+			Log.e(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request denieeddddd");
+		}
 	}
 
 	public void disableBackgroundMusic () {
+		Log.i(TAG, "requesting to disable the background music....");
 		//disable bg moosic
-		audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+			Log.d(TAG, "AUDIOFOCUS_GAIN Audio request granted");
+		} else {
+			Log.e(TAG, "AUDIOFOCUS_GAIN Audio request denieeddddd");
+		}
 	}
 }
