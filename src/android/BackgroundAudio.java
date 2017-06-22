@@ -11,12 +11,8 @@ import android.util.Log;
 
 public class BackgroundAudio extends CordovaPlugin {
 
-	public AudioManager audioMgr;
-	public AudioManager.OnAudioFocusChangeListener changeListener;
-	public Context mContext;
-	private final static String TAG = "AudioFocus";
-
-	public boolean execute(String action, JSONArray arg) throws JSONException {
+	@Override
+	public boolean execute(String action, JSONArray args) throws JSONException {
         if (action.equals("enableBackgroundMusic")) {
         	this.enableBackgroundMusic();
         	return true;
@@ -29,6 +25,11 @@ public class BackgroundAudio extends CordovaPlugin {
         }
         return false;
     }
+
+	public AudioManager audioMgr;
+	public AudioManager.OnAudioFocusChangeListener changeListener;
+	public Context mContext;
+	private final static String TAG = "AudioFocus";
 
 	public void pluginInitialize () {
 		Log.i(TAG, "Initializing Background Audio Plugin....");
