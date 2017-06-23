@@ -66,7 +66,7 @@ public class BackgroundAudio extends CordovaPlugin {
 
 	public void enableBackgroundMusic () {
 		Log.i(TAG, "requesting audio focus loss to enable bg music....");
-		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_LOSS);
+		int result = audioMgr.abandonAudioFocus(changeListener);
 		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 			Log.d(TAG, "AUDIOFOCUS_LOSS Audio request granted");
 		} else {
