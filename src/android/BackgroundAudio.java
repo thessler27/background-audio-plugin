@@ -41,12 +41,7 @@ public class BackgroundAudio extends CordovaPlugin {
 	            }
 			}
 		};
-		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK); //<-- init with this
-		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-			Log.d(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request granted");
-		} else {
-			Log.e(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request denieeddddd");
-		}
+		//this.quietBackgroundMusic(); // <-- init with this
 	}
 
 	@Override
@@ -77,8 +72,11 @@ public class BackgroundAudio extends CordovaPlugin {
 	public void quietBackgroundMusic () {
 		Log.i(TAG, "requesting to gain focus and transient to duck....");
 		//quiet BG moosic
-		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
-		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+		int musicResult  = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+		int systemResult = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_SYSTEM, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+
+		if(musicResult == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+			&& systemResult == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 			Log.d(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request granted");
 		} else {
 			Log.e(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Audio request denieeddddd");
@@ -88,8 +86,11 @@ public class BackgroundAudio extends CordovaPlugin {
 	public void disableBackgroundMusic () {
 		Log.i(TAG, "requesting to disable the background music....");
 		//disable bg moosic
-		int result = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-		if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+		int musicResult  = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+		int systemResult = audioMgr.requestAudioFocus(changeListener, AudioManager.STREAM_SYSTEM, AudioManager.AUDIOFOCUS_GAIN);
+
+		if(musicResult == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+			&& systemResult == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 			Log.d(TAG, "AUDIOFOCUS_GAIN Audio request granted");
 		} else {
 			Log.e(TAG, "AUDIOFOCUS_GAIN Audio request denieeddddd");
