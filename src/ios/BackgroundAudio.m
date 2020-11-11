@@ -5,14 +5,14 @@
 
 // this method is executed when the app loads because of the onload param in plugin.xml
 - (void)pluginInitialize {
-  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-  NSError *setCategoryError = nil;
-  BOOL ok = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
+  // AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+  // NSError *setCategoryError = nil;
+  // BOOL ok = [audioSession setCategory:AVAudioSessionCategoryPlayback withOptions: AVAudioSessionCategoryOptionDuckOthers error:&setCategoryError];
 
-  NSLog(@"BackgroundAudio plugin ok with duck? %@", ok ? @"YES" : @"NO");
-  if (!ok) {
-    NSLog(@"BackgroundAudio plugin error: %@", setCategoryError.description);
-  }
+  // NSLog(@"BackgroundAudio plugin ok with duck? %@", ok ? @"YES" : @"NO");
+  // if (!ok) {
+  //   NSLog(@"BackgroundAudio plugin error: %@", setCategoryError.description);
+  // }
 }
 
 - (void) enableBackgroundMusic: (CDVInvokedUrlCommand *) command {
