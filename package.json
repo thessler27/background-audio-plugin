@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "name": "thessler-background-audio-plugin",
+  "description": "--- Title: Background Audio Plugin Author: Thomas Hessler ---",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thessler27/background-audio-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thessler27/background-audio-plugin/issues"
+  },
+  "homepage": "https://github.com/thessler27/background-audio-plugin#readme"
+}
